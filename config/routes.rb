@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "products#index"
   resources :users
   resources :products
+  resources :addresses, only: [:index, :create]
   get "buyproduct" => "products#buyproduct"
   get "userlogout" => "users#userlogout"
   get "creditcard" => "users#creditcard-registration"
