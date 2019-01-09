@@ -1,0 +1,45 @@
+.single-footer{
+  width: 456px;
+  height: 250px;
+  padding: 40px 0;
+  text-align: center;
+  margin: 0 auto;
+  nav{
+    width: 452px;
+    height: 12px;
+    ul.clearfix{
+      margin: 0 auto;
+      text-align: center;
+      li{
+        display: inline-block;
+        font-size: 12px;
+        padding-left: 10px;
+        list-style: none;
+        a{
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+  .single-footer-logo{
+    display: block;
+    margin: 40px auto 0;
+    height: 65px;
+    width: 80px;
+    text-align:center;
+    img{
+      margin: auto;
+      height: 65px;
+      width: 80px;
+      vertical-align: middle;
+    }
+  }
+  p{
+    margin: 8px 0 0;
+    width: 456px;
+    height: 14px;
+    font-size: smaller;
+    text-align: center;
+  }
+}

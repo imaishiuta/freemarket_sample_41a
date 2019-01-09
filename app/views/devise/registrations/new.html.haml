@@ -31,6 +31,12 @@
               必須
             %input.input-default{type: "password", name: "password2", placeholder: "6文字以上"}
           %input{type: "hidden", name:"after_save_callback"}
+          .form-group
+            .g-recaptcha.login-captcha{"data-sitekey" => ""}
+              %div{:style => "width: 304px; heigth: 78px;"}
+                %div
+                  %iframe{:frameborder => "0", :height => "78", :name => "a-dr50ls30j7kl", :role => "presentation", :sandbox => "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox", :scrolling => "no", :src => "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1545073489967&size=normal&cb=rtwa7qfilclr", :width => "304"}
+                %textarea#g-recaptcha-response.g-recaptcha-response{:name => "g-recaptcha-response", :style => "width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"}
           .form-group.rbt
           = link_to "secondpage" do
             %button.btn-default.btn-red{type:"submit"}
