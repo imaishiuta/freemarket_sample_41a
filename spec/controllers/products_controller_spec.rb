@@ -22,13 +22,13 @@ describe ProductsController do
     it "カテゴリーベビー・キッズに属する商品が格納されるか" do
       product = create(:product,category_id: 397)
       get :index
-      expect(assigns(:baby).length).to eq 1
+      expect(assigns(:baby_products).length).to eq 1
     end
 
-    it "カテゴリーコスメに属する商品が格納されるか" do
+    it "カテゴリーインテリアに属する商品が格納されるか" do
       product = create(:product,category_id: 533)
       get :index
-      expect(assigns(:kosume).length).to eq 1
+      expect(assigns(:interior_products).length).to eq 1
     end
   end
 
