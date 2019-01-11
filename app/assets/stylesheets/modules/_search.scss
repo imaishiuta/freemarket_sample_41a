@@ -1,0 +1,117 @@
+.search-container {
+  font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+  padding: 40px 0;
+  background: #f5f5f5;
+  &:after{
+    content: "";
+    clear: both;
+    display: block;
+  }
+  .pickup-head {
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+  .items-box-container {
+    width: 940px;
+    margin: 0 auto;
+    .text-center {
+      font-size: 22px;
+      margin: 22px 11px;
+      text-align: center;
+      a{
+        text-decoration: none;
+        color: #0099e8;
+        font-weight: bold;
+      }
+    }
+    .items-box-content.clearfix{
+      width: auto;
+      margin: 0 auto;
+      height: 330px;
+      .items-box{
+        margin: 0 0 20px 20px;
+        width: 213px;
+        background-color: blue;
+        float: left;
+        background: #fff;
+        position: relative;
+        a{
+          display: block;
+          color: #333;
+          text-decoration: none;
+          .items-box-photo {
+            width: 213px;
+            overflow: hidden;
+            position: relative;
+            padding: 0 0 100%;
+            margin: 0;
+            .is-higher-height.lazyloaded{
+              position: absolute;
+              z-index: 1;
+              width: 100%;
+            }
+          }
+          .items-box-body{
+            padding: 16px 16px 8px 16px;
+            .items-box-name{
+              overflow: hidden;
+              position: relative;
+              font-weight: 400;
+              height: 3em;
+              line-height: 1.5;
+              word-break: break-word;
+              white-space: normal;
+              font-size: 16px;
+              color: #333;
+            }
+            .items-box-num.clearfix{
+              margin: 8px 0 0;
+              .items-box-price{
+                font-size: 19px;
+                float: left;
+                font-weight: 600;
+                color: #333;
+              }
+              .items-box-likes{
+                float: right;
+                font-size: 16px;
+                vertical-align: middle;
+                .fa-heart{
+                display: inline-block;
+                speak: none;
+                font-style: normal;
+                font-weight: 400;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                color: #ccc;
+                vertical-align: inherit;
+                }
+                span{
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+              }
+              .item-box-tax{
+                font-size: 10px;
+                clear: both;
+              }
+            }
+          }
+        }
+      }
+    }
+    .view-all{
+      padding: 20px 0 30px;
+      width: 99.5%;
+      text-align: right;
+      a{
+        color: #0099e8;
+        text-decoration: none;
+        font-size: 14px;
+      }
+    }
+  }
+}

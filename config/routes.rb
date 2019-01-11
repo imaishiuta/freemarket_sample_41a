@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :products
   post "pay" => "users#pay"
   get "register_cregit_card" => "users#register_cregit_card"
+  get "search" => "products#search"
   get "buyproduct" => "products#buyproduct"
   get "userlogout" => "users#userlogout"
   get "creditcard" => "users#creditcard-registration"

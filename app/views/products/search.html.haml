@@ -1,0 +1,13 @@
+= render "products/header"
+
+%section.search-container
+  %h2.pickup-head #{@keyword} での検索結果
+  %section.items-box-container.clearfix
+    %h3.text-center
+      #{@products.length}件
+
+    .items-box-content.clearfix
+      = render partial: "productlist", collection: @products, as: :product
+
+= render "products/exhibition"
+= render "products/footer"

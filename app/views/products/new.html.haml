@@ -16,31 +16,13 @@
                 .sell-upload-items-container
                   .sell-upload-items.have-item-0
                     %ul
-                  = f.fields_for :product_images do |i|
-                    = i.label :image, class: "sell-upload-drop-box", for: "image" do
-                      %pre.visible-pc
-                        :preserve
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
-                      = i.file_field :image, class: "file", id: "image", multiple: true
-                    / = i.label :image, class: "sell-upload-drop-box", for: "image" do
-                    /   %pre.visible-pc
-                    /     :preserve
-                    /       ドラッグアンドドロップ
-                    /       またはクリックしてファイルをアップロード
-                    /   = i.file_field :image, class: "file", id: "image", multiple: true
-                    / = i.label :image, class: "sell-upload-drop-box", for: "image" do
-                    /   %pre.visible-pc
-                    /     :preserve
-                    /       ドラッグアンドドロップ
-                    /       またはクリックしてファイルをアップロード
-                    /   = i.file_field :image, class: "file", id: "image", multiple: true
-                    / = i.label :image, class: "sell-upload-drop-box", for: "image" do
-                    /   %pre.visible-pc
-                    /     :preserve
-                    /       ドラッグアンドドロップ
-                    /       またはクリックしてファイルをアップロード
-                    /   = i.file_field :image, class: "file", id: "image", multiple: true
+                = f.fields_for :product_images do |i|
+                  .sell-upload-drop-box.have-item
+                    %pre.visible-pc
+                      :preserve
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+                    = i.file_field :image, class: "file"
             .sell-content
               .form-group
                 = f.label :name do
@@ -91,7 +73,7 @@
                 /     %input.input-default{:placeholder => "例）シャネル", :value => ""}/
                 /     %div
                 .form-group
-                  %label
+                  = f.label :condition do
                     商品の状態
                     %span.form-require 必須
                   .select-wrap
@@ -143,7 +125,7 @@
                     = f.collection_select :area_id, Area.all, :id, :name, {:include_blank => "---"}, {class: "select-default"}
                     %i.fas.fa-chevron-down
                 .form-group
-                  %label
+                  = f.label :shipmentday do
                     発送までの日数
                     %span.form-require 必須
                   .select-wrap
