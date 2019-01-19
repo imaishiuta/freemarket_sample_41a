@@ -5,7 +5,7 @@
       - if product.product_images.present?
         = image_tag "#{product.product_images[0].image_url}",class: "is-higher-height lazyloaded",alt: "#{product.name}"
       - if product.trade.user_id?
-        .item-sold-out-badge
+        .items-box-photo-badge
           %div
             SOLD
     .items-box-body
