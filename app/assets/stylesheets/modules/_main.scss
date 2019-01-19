@@ -200,7 +200,7 @@
           color: #333;
           text-decoration: none;
           .items-box-photo {
-            .item-sold-out-badge{
+            &-badge{
             div{
               background-color: red;
               position: absolute;
@@ -214,7 +214,7 @@
               font-size: 28px;
             }
           }
-          .item-sold-out-badge:after{
+          &-badge:after{
             border-width: 120px 120px 0 0;
             border-color: #ea352d transparent transparent transparent;
             display: block;
