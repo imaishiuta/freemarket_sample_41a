@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:omniauthable,:omniauth_providers => [:facebook,:google_oauth2]
   validates :name, presence: true
-  has_many :products
+  has_many :products, foreign_key: :seller
   has_one :address,dependent: :destroy
   accepts_nested_attributes_for :address
   has_many :trades

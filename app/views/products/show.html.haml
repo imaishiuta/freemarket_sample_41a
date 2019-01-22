@@ -103,7 +103,7 @@
       (税込)
     %span.item-shipping-fee
       送料込み
-  - if @product.trade.deal == false && @product.seller != current_user.id && @product.trade.user_id.nil?
+  - if @product.trade.deal == false && @product.trade.user_id.nil?
     = link_to product_mypayjp_path(@product), class: "item-buy-btn" do
       商品を購入する
   - else
@@ -195,3 +195,10 @@
         = f.text_area :text,class: "textarea-default"
         = f.button type: "submit",class: "message-submit" do
           %spam コメントする
+  .items-container
+    %h2.items-container-head
+      %p
+        = "#{@seller.name} さんの他の出品"
+    .items-container-content.clearfix
+      = render partial: "productlist", collection: @another_product, as: :product
+= render "products/footer"
