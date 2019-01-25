@@ -34,39 +34,144 @@
             .buy-price-cell-fix
               = @product.price
               = hidden_field_tag 'price', "#{@product.price}"
-        %p.has-error-text
-          配送先と支払い方法の入力を完了してください。
-        .button-wrapper
-          - if @user.cardtoken?
-            = button_tag class: "btn-default btn-red", type: "submit" do
-              .buy-botton
-                購入する
-          - else
-            .btn-default
-              .buy-botton
-                クレジットカードを登録してください
+        - if @user.address && @user.payjp_id
+          .button-wrapper
+            .button-default
+              = button_tag class: "btn-default btn-red", type: "submit" do
+                .buy-botton
+                  購入する
+        - else
+          .button-wrapper
+            %p.has-error-text
+              配送先と支払い方法の入力を完了してください。
   %section.buy-content.buy-user-info
     .buy-content-inner
       %h3
         配送先
       %address.buy-user-info-text
+      - if @user.address
         = @user.address.zip_code
         %br
-        = @area.name
         = @user.address.city
         = @user.address.address1
         %br
         = @user.address.address2
-    %a.buy-user-info-fix(href="#")
-      %span 変更する
-      %i.fas.fa-angle-right
+      - else
+        %p
+          配送先が登録されていません
+        .buy-user-info-fix
+          = form_for @address, class:'l-single-inner' do |f|
+            .l-single-content
+              .form-group
+                = f.label :name do
+                  お名前
+                  %span.form-require 必須
+                  =f.text_field :first_name, class: 'input-default', placeholder:'例）山田', value: ""
+                  =f.text_field :last_name, class: 'input-default',  placeholder:'例）彩', value: ""
+              .form-group
+                = f.label :name do
+                  お名前カナ
+                  %span.form-require 必須
+                  =f.text_field :first_name_kana, class: 'input-default', placeholder:'例）ヤマダ', value: ""
+                  =f.text_field :last_name_kana, class: 'input-default', placeholder:'例）アヤ', value: ""
+              .form-group
+                = f.label :zip_code do
+                  郵便番号
+                  %span.form-require 必須
+                  =f.text_field :zip_code, class: 'input-default', placeholder:'例）123-4567', 'data-region':'jp', maxlength:'8', pattern:'\\d{3}-\\d{4}', value: ""
+              .form-group
+                = f.label :prefecture do
+                  %span.form-require 必須
+                  .select-wrap
+                    都道府県
+                    = f.collection_select :prefecture, Area.all,:id, :name
+                    %i.icon-arrow-bottom
+              .form-group
+                = f.label :city do
+                  市区町村
+                  %span.form-require 必須
+                  = f.text_field :city, class: 'input-default', placeholder:'例）横浜市緑区', value: ""
+              .form-group
+                = f.label :address1_label do
+                  番地
+                  %span.form-require 必須
+                  =f.text_field :address1, class: 'input-default', placeholder:'例）青山1−1−1', value: ""
+              .form-group
+                = f.label :address2_label do
+                  建物名
+                  %span.form-arbitrary 任意
+                  =f.text_field :address2, class: 'input-default', placeholder:'例）柳ビル103', value: ""
+              .form-group
+                = f.label :address2_label do
+                  電話
+                  %span.form-arbitrary 任意
+                  =f.number_field :telephone, class: 'input-default', placeholder:'例）09012345678', value: ""
+              = f.button html: {class: "btn-default btn-red", type: "submit"} do
+                次へ進む
   %section.buy-content.buy-user-info
     .buy-content-inner
-      %h3
-        支払方法
-      %address.buy-user-info-text
-      %p
-    %a.buy-user-info-fix(href="#")
-      %span 変更する
-      %i.fas.fa-angle-right
-
+      - if @user.payjp_id
+        %h3
+          クレジットカード支払いは登録されています
+      - else
+        %h3
+          クレジットカードを登録してください
+        .buy-user-info-fix
+          %span 変更する
+          = form_tag '/pay', class: "l-single-inner", id: "add-card-form" do |f|
+            .l-single-content
+              .form-group
+                = label_tag :payment_card_no do
+                  カード番号
+                %span.form-require 必須
+                = text_field_tag :number, "", {class: "input-default", id: "payment_card_no", maxlength: "16", placeholder: "半角数字のみ"}
+              .form-group.signup-form-expire
+                = label_tag :payment_card_expire do
+                  有効期限
+                %span.form-require 必須
+                %br/
+                .select-wrap4
+                  %select#payment_card_expire_mm.select-default{name: "month"}
+                    %option{:value => "01"} 01
+                    %option{:value => "02"} 02
+                    %option{:value => "03"} 03
+                    %option{:value => "04"} 04
+                    %option{:value => "05"} 05
+                    %option{:value => "06"} 06
+                    %option{:value => "07"} 07
+                    %option{:value => "08"} 08
+                    %option{:value => "09"} 09
+                    %option{:value => "10"} 10
+                    %option{:value => "11"} 11
+                    %option{:value => "12"} 12
+                  %i.icon-arrow-bottom
+                %span.moon 月
+                %ul#expire-mm-error-wrapper.has-error-text
+                .select-wrap4
+                  %select#payment_card_expire_yy.select-default{name: "year"}
+                    %option{:value => "19"} 19
+                    %option{:value => "20"} 20
+                    %option{:value => "21"} 21
+                    %option{:value => "22"} 22
+                    %option{:value => "23"} 23
+                    %option{:value => "24"} 24
+                    %option{:value => "25"} 25
+                    %option{:value => "26"} 26
+                    %option{:value => "27"} 27
+                    %option{:value => "28"} 28
+                    %option{:value => "29"} 29
+                  %i.icon-arrow-bottom
+                %span 年
+                %ul#expire-yy-error-wrapper.has-error-text
+              .form-group
+                = label_tag :payment_card_security_code do
+                  セキュリティコード
+                %span.form-require 必須
+                = number_field_tag :cvc, "", {class: "input-default", id: "payment_card_security_code", placeholder: "カード背面4桁もしくは3桁の番号"}
+                %ul#security-code-error-wrapper.has-error-text
+                .signup-seqcode
+                  .signup-seqcode-text{"data-js" => "show-tips-toggle"}
+                    %span.form-question>
+                    %i.fas.fa-question-circle
+                    カード裏面の番号とは？
+              = submit_tag "次へ進む", {class: "btn-red btn-default", id: "submit-button"}

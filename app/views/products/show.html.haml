@@ -103,15 +103,23 @@
       (税込)
     %span.item-shipping-fee
       送料込み
-  - if @product.trade.deal == false && @product.trade.user_id.nil?
-    = link_to product_mypayjp_path(@product), class: "item-buy-btn" do
-      商品を購入する
+  - if user_signed_in?
+    - if current_user.id != @product.seller && @product.trade.user_id.nil?
+      = link_to product_mypayjp_path(@product), class: "item-buy-btn" do
+        商品を購入する
+    - elsif current_user.id != @product.seller
+      .item-buy-btn.disabled
+        売り切れました
+    .item-description
+      %p.item-description-inner
+        = @product.detail
   - else
-    .item-buy-btn.disabled
-      売り切れました
-  .item-description
-    %p.item-description-inner
-      = @product.detail
+    - if @product.trade.user_id.nil?
+      = link_to product_mypayjp_path(@product), class: "item-buy-btn" do
+        商品を購入する
+    - else
+      .item-buy-btn.disabled
+        売り切れました
   .item-button-container.clearfix
     .item-button-left#like-button
       - if user_signed_in?
