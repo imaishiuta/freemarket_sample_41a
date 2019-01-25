@@ -7,14 +7,27 @@ class CommentsController < ApplicationController
   def create
     @comment = @product.comments.new(params_comment)
     if @comment.save
-      redirect_to product_path(@product)
+      respond_to do |format|
+        format.html {redirect_back(fallback_location: product_path(@product))}
+        format.js
+      end
+    else
+      redirect_back(fallback_location: product_path(@product))
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to product_path(@product)
+    if @comment.destroy
+      respond_to do |format|
+        format.html {redirect_back(fallback_location: product_path(@product))}
+        format.js
+      end
+    else
+
+      redirect_to product_path(@product)
+    end
+
   end
 
   private

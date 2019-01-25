@@ -166,7 +166,7 @@
     .message-content
       %ul.message-items
         - @comments.each do |comment|
-          %li.clearfix
+          %li.clearfix{data: "#{comment.id}"}
             = link_to root_path,class: "message-user" do
               %figure
                 %div
@@ -185,12 +185,12 @@
                   %span 7日前
                 .message-icon-right
                   - if comment.user == current_user
-                    = link_to product_comment_path(product_id: @product.id,id: comment.id), method: :delete do
+                    = link_to product_comment_path(product_id: @product.id,id: comment.id), remote: true ,method: :delete do
                       %i.fas.fa-trash
                   %i.fa.fa-flag
               .i.icon-balloon
     .message-content
-      = form_for [@product,@comment],html: {class: "message-form"} do |f|
+      = form_for [@product,@comment],remote: true,html: {class: "message-form"} do |f|
         %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
         = f.text_area :text,class: "textarea-default"
         = f.button type: "submit",class: "message-submit" do

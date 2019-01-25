@@ -1,0 +1,23 @@
+%li.clearfix{data: "#{comment.id}"}
+  = link_to root_path,class: "message-user" do
+    %figure
+      %div
+        = image_tag(src="//static-mercari-jp-imgtr2.akamaized.net/thumb/members/110939089.jpg?1464094325")
+      %figcaption.bold
+        = comment.user.name
+    - if comment.user == @product.seller
+      .message-is-seller
+        出品者
+  .message-body
+    .message-body-text
+      = comment.text
+    .message-icons.clearfix
+      .message-icon-left
+        %i.far.fa-clock
+        %span 7日前
+      .message-icon-right
+        - if comment.user == current_user
+          = link_to product_comment_path(product_id: @product.id,id: comment.id), remote: true ,method: :delete do
+            %i.fas.fa-trash
+        %i.fa.fa-flag
+    .i.icon-balloon

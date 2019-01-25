@@ -43,9 +43,9 @@ class ProductsController < ApplicationController
 
     if @product.save
       Trade.create(product_id: @product.id)
-      redirect_to root_path(@product), notice: "出品が完了しました"
+      redirect_to root_path(@product), flash: {success: "出品が完了しました"}
     else
-      redirect_to new_product_path, alert: "必須項目をすべて選択してください"
+      redirect_to new_product_path, flash: {miss: "必須項目をすべて選択してください"}
     end
   end
 

@@ -1,0 +1,4 @@
+var commentid = <%= @comment.id %>
+$(function() {
+  $(`[data="${commentid}"]`).remove()
+});
