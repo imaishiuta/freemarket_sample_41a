@@ -34,8 +34,6 @@
             .buy-price-cell-fix
               = @product.price
               = hidden_field_tag 'price', "#{@product.price}"
-        %p.has-error-text
-          配送先と支払い方法の入力を完了してください。
         .button-wrapper
           - if @user.cardtoken?
             = button_tag class: "btn-default btn-red", type: "submit" do
@@ -52,7 +50,6 @@
       %address.buy-user-info-text
         = @user.address.zip_code
         %br
-        = @area.name
         = @user.address.city
         = @user.address.address1
         %br
