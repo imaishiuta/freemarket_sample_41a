@@ -46,6 +46,7 @@ class UsersController < ApplicationController
 
   def pay
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    path = Rails.application.routes.recognize_path(request.referrer)
     @user = User.find(current_user)
     exp_yaer = '20' + params[:year]
     @user.cardtoken = PaysHelper.create_token(params[:number], params[:month], exp_yaer, params[:cvc]).id
@@ -54,7 +55,11 @@ class UsersController < ApplicationController
       customer_id = Payjp::Customer.create(card: token).id
       @user.payjp_id = customer_id
       @user.save
-      redirect_to root_path
+      if path[:controller] == "mypayjp"
+        redirect_to product_mypayjp_path(path)
+      elsif path[:controller] == "users"
+        redirect_to root_path
+      end
     else
       redirect_to register_cregit_card_path
     end

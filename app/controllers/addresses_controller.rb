@@ -5,8 +5,14 @@ class AddressesController < ApplicationController
   end
 
   def create
-     @address = Address.create(address_params)
-     redirect_to register_cregit_card_path
+    @address = Address.create(address_params)
+    path = Rails.application.routes.recognize_path(request.referrer)
+    binding.pry
+    if path[:controller] == "mypayjp"
+      redirect_to product_mypayjp_path(path)
+    elsif path[:controller] == "addresses"
+      redirect_to register_cregit_card_path
+    end
   end
 
   private
