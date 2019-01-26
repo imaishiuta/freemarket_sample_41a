@@ -58,12 +58,13 @@
                       %i.fas.fa-chevron-down
                   - @categoryroot.each do |root|
                     .select-box-list
-                      = collection_select :product, :category_id, root.children, :id, :name,{include_blank: "---"}, {class: "select-default select-box-child",child_id: "#{root.id}"}
-                      %i.fas.fa-chevron-down
-                    - root.children.each do |son|
-                      .select-box-list-son
-                        = f.collection_select :category_id, son.children, :id, :name, {include_blank: "---"}, {class: "select-default select-box-son", son_id: "#{son.id}"}
+                      - cache root.children do
+                        = collection_select :product, :category_id, root.children, :id, :name,{include_blank: "---"}, {class: "select-default select-box-child",child_id: "#{root.id}"}
                         %i.fas.fa-chevron-down
+                        - root.children.each do |son|
+                          .select-box-list-son
+                            = f.collection_select :category_id, son.children, :id, :name, {include_blank: "---"}, {class: "select-default select-box-son", son_id: "#{son.id}"}
+                            %i.fas.fa-chevron-down
                   = f.hidden_field :category_id, {class: "category"}
                 .form-group
                   = f.label :size_id do
