@@ -26,13 +26,14 @@
                   %ul.pc-header-nav-child-wrap
                     - root.children.first(14).each do |child|
                       %li.pc-header-nav-child
-                        = link_to category_path(id: child.id) do
-                          = child.name
-                        %ul.pc-header-nav-grand-child-wrap
-                          - child.children.first(14).each do |son|
-                            %li.pc-header-nav-grand-child
-                              = link_to category_path(id: son.id) do
-                                = son.name
+                        - cache child do
+                          = link_to category_path(id: child.id) do
+                            = child.name
+                          %ul.pc-header-nav-grand-child-wrap
+                            - child.children.first(14).each do |son|
+                              %li.pc-header-nav-grand-child
+                                = link_to category_path(id: son.id) do
+                                  = son.name
               %li.pc-header-nav-parent
                 %h3
                   = link_to category_index_path do
