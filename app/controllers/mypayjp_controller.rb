@@ -22,6 +22,11 @@ require 'payjp'
     if current_user.point
       save_users_point(point, amount)
     end
+    if amount == 0
+      @trade = Trade.find_by(product_id: params[:id])
+      @trade.user_id = current_user.id
+      @trade.save
+    end
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     PaysHelper.create_charge(amount, customer_id)
     Trade.transaction do
