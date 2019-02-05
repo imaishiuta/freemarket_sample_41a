@@ -8,7 +8,7 @@
             = label_tag :payment_card_no do
               カード番号
             %span.form-require 必須
-            = text_field_tag :number, "", {class: "input-default", id: "payment_card_no", maxlength: "16", placeholder: "半角数字のみ"}
+            = number_field_tag :number, "", {class: "input-default", id: "payment_card_no", maxlength: "16", placeholder: "半角数字のみ"}
           .form-group.signup-form-expire
             = label_tag :payment_card_expire do
               有効期限
@@ -51,14 +51,14 @@
             = label_tag :payment_card_security_code do
               セキュリティコード
             %span.form-require 必須
-            = number_field_tag :cvc, "", {class: "input-default", id: "payment_card_security_code", placeholder: "カード背面4桁もしくは3桁の番号"}
+            = number_field_tag :cvc, "", {class: "input-default", id: "payment_card_security_code", placeholder: "カード背面4桁もしくは3桁の番号",  maxlength: "4"}
             %ul#security-code-error-wrapper.has-error-text
             .signup-seqcode
               .signup-seqcode-text{"data-js" => "show-tips-toggle"}
                 %span.form-question>
                 %i.fas.fa-question-circle
                 カード裏面の番号とは？
-          = submit_tag "次へ進む", {class: "btn-red btn-default", id: "submit-button"}
+          = submit_tag "次へ進む", {class: "btn-red btn-default", id: "submit-button", "disabled": false}
   %footer.single-footer
     %nav
       %ul.clearfix
