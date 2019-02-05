@@ -45,19 +45,24 @@ class UsersController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    @user = User.find(current_user)
-    exp_yaer = '20' + params[:year]
-    @user.cardtoken = PaysHelper.create_token(params[:number], params[:month], exp_yaer, params[:cvc]).id
-    if @user.save
+    begin
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      @user = User.find(current_user)
+      exp_year = '20' + params[:year]
+      @user.cardtoken = PaysHelper.create_token(params[:number], params[:month], exp_year, params[:cvc]).id
+    rescue Payjp::CardError => e
+      body = e.json_body
+      err  = body[:error]
+    end
+    if err != nil
+      return render "register_cregit_card"
+    end
+      @user.save
       token = @user.cardtoken
       customer_id = Payjp::Customer.create(card: token).id
       @user.payjp_id = customer_id
       @user.save
       redirect_to root_path
-    else
-      redirect_to register_cregit_card_path
-    end
   end
 
   def set_user
