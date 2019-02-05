@@ -5,8 +5,12 @@ class AddressesController < ApplicationController
   end
 
   def create
-     @address = Address.create(address_params)
-     redirect_to register_cregit_card_path
+     @address = Address.new(address_params)
+     if @address.save
+       redirect_to register_cregit_card_path
+     else
+       redirect_to new_address_path
+     end
   end
 
   private
