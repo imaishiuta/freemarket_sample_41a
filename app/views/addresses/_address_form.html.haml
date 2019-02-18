@@ -1,0 +1,40 @@
+= form_for @address, class:'address-form' do |f|
+  .l-single-content
+    .form-group
+      = f.label :name do
+        お名前
+        =f.text_field :first_name, class: 'input-default', placeholder:'例）山田', value: ""
+        =f.text_field :last_name, class: 'input-default',  placeholder:'例）彩', value: ""
+    .form-group
+      = f.label :name do
+        お名前カナ
+        =f.text_field :first_name_kana, class: 'input-default', placeholder:'例）ヤマダ', value: ""
+        =f.text_field :last_name_kana, class: 'input-default', placeholder:'例）アヤ', value: ""
+    .form-group
+      = f.label :zip_code do
+        郵便番号
+        =f.text_field :zip_code, class: 'input-default zipcode', placeholder:'例）123-4567', 'data-region':'jp', maxlength:'8', pattern:'\\d{3}-\\d{4}', value: ""
+    .form-group
+      = f.label :prefecture do
+        .select-wrap
+          都道府県
+          = f.collection_select :prefecture, Area.all,:id, :name, class: "select-prefecture"
+          %i.icon-arrow-bottom
+    .form-group
+      = f.label :city do
+        市区町村
+        = f.text_field :city, class: 'input-default cities', placeholder:'例）横浜市緑区', value: ""
+    .form-group
+      = f.label :address1_label do
+        番地
+        =f.text_field :address1, class: 'input-default a-lot-number', placeholder:'例）青山1−1−1', value: ""
+    .form-group
+      = f.label :address2_label do
+        建物名
+        =f.text_field :address2, class: 'input-default buildings', placeholder:'例）柳ビル103', value: ""
+    .form-group
+      = f.label :address2_label do
+        電話
+        =f.number_field :telephone, class: 'input-default telephone', placeholder:'例）09012345678', value: ""
+    = f.button html: {class: "btn-default btn-red", type: "submit"} do
+      登録する
