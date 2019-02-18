@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @seller = User.find_by(id: @product.seller)
-    @another_product = @seller.products.where.not(id: @product.id).limit(3)
+    @another_product = @seller.products.where.not(id: @product.id).order("created_ad DESC").limit(3)
     @same_category = @product.category
     @same_category_products = @same_category.products.where.not(id: @product.id).limit(3)
     @comment = Comment.new
