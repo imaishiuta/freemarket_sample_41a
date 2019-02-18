@@ -42,7 +42,7 @@
               = f.label :zip_code do
                 郵便番号
                 %span.form-require 必須
-                =f.text_field :zip_code, class: 'input-default', placeholder:'例）123-4567', 'data-region':'jp', maxlength:'8', pattern:'\\d{3}-\\d{4}', value: ""
+                =f.text_field :zip_code, class: 'input-default', placeholder:'例）123-4567', 'data-region':'jp', maxlength:'7', value: ""
             .form-group
               = f.label :prefecture do
                 %span.form-require 必須
