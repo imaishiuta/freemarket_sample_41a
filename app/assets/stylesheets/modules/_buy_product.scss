@@ -109,17 +109,148 @@
       h3{
         font-size: 14px;
       }
+      .address-wrapper{
+        .l-single-content{
+          font-weight: bold;
+          margin-top: 10px;
+          .form-group{
+            width: 100%;
+            display: block;
+            label{
+              display: inline-block;
+              .input-default{
+                width: 200px;
+                display: inline-block;
+                float: right;
+                margin-right: 20px;
+              }
+              .zipcode{
+                margin-left: 32px;
+              }
+              #address_prefecture{
+                margin-left: 140px;
+              }
+              .cities{
+                margin-left: 32px;
+              }
+              .a-lot-number{
+                margin-left: 64px;
+              }
+              .telephone{
+                margin-left: 64px;
+              }
+              .buildings{
+                margin-left: 48px;
+              }
+            }
+          }
+          button{
+            .btn-red {
+              background-color: red;
+              }
+            margin-top: 5px;
+            float: right;
+            font-weight: bold;
+            margin-right: 20px;
+          }
+        }
+      }
       .buy-user-info-text{
+        font-weight: bold;
         margin: 8px 0 0;
         font-size: 14px;
         line-height: 1.4;
+        .new_address{
+          color: black;
+          font-weight: bold;
+          .l-single-content{
+            margin-top: 10px;
+            .form-group{
+              width: 100%;
+              display: block;
+              label{
+                display: inline-block;
+                .input-default{
+                  width: 200px;
+                  display: inline-block;
+                  float: right;
+                  margin-right: 20px;
+                }
+                .zipcode{
+                  margin-left: 40px;
+                }
+                #address_prefecture{
+                  margin-left: 158px;
+                }
+                .cities{
+                  margin-left: 40px;
+                }
+                .a-lot-number{
+                  margin-left: 68px;
+                }
+                .telephone{
+                  margin-left: 68px;
+                }
+                .buildings{
+                  margin-left: 54px;
+                }
+              }
+            }
+            button{
+              .btn-red {
+                background-color: red;
+                }
+              margin-top: 5px;
+              float: right;
+              font-weight: bold;
+              margin-right: 20px;
+            }
+          }
+        }
       }
     }
     .buy-user-info-fix{
       color: #0099e8;
       text-decoration: none;
       display: block;
-      text-align: right;
+    }
+    .buy-content-inner{
+      .buy-user-info-fix{
+        margin-top: 10px;
+        font-size: 14px;
+        .l-single-inner{
+          color: black;
+          font-weight: bold;
+          .form-group{
+            label{
+              display: inline-block;
+              .input-default{
+                width: 200px;
+                display: inline-block;
+                margin-left: 20px;
+              }
+            .select-wrap4{
+              display: inline-block;
+              .select-month{
+                margin-left: 180px;
+              }
+              .select-year{
+                margin-left: 240px;
+              }
+            }
+            .month{
+             // margin-left: 170px;
+            }
+            }
+          }
+          .btn-default{
+            float: right;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 25px;
+          }
+        }
+      }
     }
   }
   .buy-content:last-of-type{
@@ -133,4 +264,14 @@
 
 .btn-red {
   background-color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.edit-address{
+  display: block;
+  float: right;
+  margin-right: 20px;
 }
