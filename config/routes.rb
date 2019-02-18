@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get "identification"
     end
   end
-  resources :addresses, only: [:new, :create]
+  resources :addresses, only: [:new, :create, :update, :edit]
 
   resources :likes, only: [:index]
 
