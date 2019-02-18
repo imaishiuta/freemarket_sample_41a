@@ -10,8 +10,11 @@ require 'payjp'
       redirect_to product_path
     end
     @user = current_user
-    @area = Area.find_by(id: current_user.address.prefecture)
+    @address = Address.find_by(user_id: current_user.id)
     @product_images = ProductImage.find_by(product_id: params[:id])
+    if @user.address == nil
+      @address = Address.new
+    end
   end
 
   def create_charge
